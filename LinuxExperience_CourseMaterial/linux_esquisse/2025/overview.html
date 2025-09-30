@@ -371,14 +371,19 @@ MacOS (basé sur un noyau Unix) l&#8217;est beaucoup plus, bien qu&#8217;un cert
 <h2 id="_distributions_linux"><a class="anchor" href="#_distributions_linux"></a>4. Distributions Linux</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Une distribution Linux se compose du système GNU/Linux et d&#8217;une sélection d&#8217;applications open-source.
-Une distribution est gérée par une communauté diffuse de contributeurs.
-Créer une distribution consiste à choisir les applications à intégrer (<em>faire son marché</em> sur Internet), et les intégrer
+<p>Une distribution Linux se compose du système GNU/Linux et d&#8217;un ensemble d&#8217;applications open-source minutieusement sélectionnées.
+Une distribution est gérée par une communauté plus ou moins diffuse de contributeurs.
+Créer une distribution consiste à choisir les applications intéressantes (<em>faire son marché</em> sur Internet), et les intégrer
  (les compiler, les configurer) de façon à constituer un environnement de travail opérationnel et cohérent.</p>
 </div>
 <div class="paragraph">
-<p>Dans la plupart des distributions, chaque application se présente sous forme d&#8217;un paquet (<em>package</em>), contenant l&#8217;exécutable, la configuration ainsi que des informations de dépendance envers d&#8217;autres packages.
-Les packages sont archivés dans des dépôts (<em>repositories</em>) publics sur Internet.</p>
+<p>Dans la plupart des distributions, chaque application se présente, avant installation, sous la forme d&#8217;un paquet (<em>package</em>).
+Un package est une archive contenant l&#8217;exécutable de l&#8217;application, sa configuration ainsi que des informations de dépendance envers d&#8217;autres packages.
+Installer une application consiste alors à récupérer sur Internet son package et à le désarchiver, ce qui va éparpiller (façon puzzle) les fichiers de l&#8217;archive sur tout le filesystem.</p>
+</div>
+<div class="paragraph">
+<p>Chaque distribution propose un dépot (<em>repository</em>) de packages, qui n&#8217;est rien dautre qu&#8217;un entrepot contenant tous les packages sélectionnés par la distribution, et qui sont destinés au téléchargement.
+Ces dépots sont répliqués sur Internet, pour notamment optimiser la qualité de service.</p>
 </div>
 <div class="paragraph">
 <p>Exemples de distribution Linux :
