@@ -70,8 +70,7 @@ h3.discrete, h4.discrete {
 }
 
 details summary.title {
-	color: green ;
-  border: 1px solid ;
+	background-color: green ;
 }
 
  
