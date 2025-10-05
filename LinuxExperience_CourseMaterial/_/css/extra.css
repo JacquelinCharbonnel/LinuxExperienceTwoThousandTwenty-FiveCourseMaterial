@@ -69,7 +69,8 @@ h3.discrete, h4.discrete {
     padding-left: 0em ;
 }
 
-details summary.title {
+/* details summary.title {*/
+details {
 	background-color: #e6ffff ;
 }
 
