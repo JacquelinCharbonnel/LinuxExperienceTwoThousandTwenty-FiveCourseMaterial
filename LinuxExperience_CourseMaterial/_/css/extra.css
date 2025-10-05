@@ -68,3 +68,10 @@ h3.discrete, h4.discrete {
     border-left-style: none;
     padding-left: 0em ;
 }
+
+details summary.title {
+	color: green ;
+}
+
+ 
+
