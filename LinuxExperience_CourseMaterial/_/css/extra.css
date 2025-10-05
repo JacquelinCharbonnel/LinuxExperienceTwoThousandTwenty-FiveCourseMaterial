@@ -71,6 +71,7 @@ h3.discrete, h4.discrete {
 
 /* details summary.title {*/
 details {
+  margin-top: 1em;
 	background-color: #e6ffff ;
 }
 
