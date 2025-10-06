@@ -43,7 +43,7 @@ i.fa.icon-caution::before {
     background: no-repeat url("../img/caution.svg");
 }
 
-h3.discrete, h4.discrete {
+h3.discrete, h4.discrete, .parttitle {
     font-weight: 450;
     /* margin-right: 50%; */
     /* border: solid #e1e1e1; */
@@ -70,11 +70,12 @@ h3.discrete, h4.discrete {
 }
 
 details.exo {
-  margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-  padding-left: 1em;
-	background-color: #e6ffff ;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  background-color: #e1e1e1 /*#e6ffff*/ ;
+
   border-radius: 10px ;
 }
 
