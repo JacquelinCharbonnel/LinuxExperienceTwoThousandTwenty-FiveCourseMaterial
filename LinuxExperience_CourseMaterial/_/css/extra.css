@@ -69,8 +69,7 @@ h3.discrete, h4.discrete {
     padding-left: 0em ;
 }
 
-/* details summary.title {*/
-details {
+details.exo {
   margin-top: 1em;
   margin-left: 1em;
   margin-right: 1em;
@@ -78,9 +77,4 @@ details {
 	background-color: #e6ffff ;
   border-radius: 10px ;
 }
-
-.exo * {
-  background-color: #e6ffff ;
-
-} 
 
