@@ -311,9 +311,11 @@ et <code>~</code> le répertoire personnel de l&#8217;utilisateur (son <code>hom
 </li>
 </ul>
 </div>
+<details class="exo">
+<summary class="title">Exercice 2<a href="" title="relatif">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="relatif">Exercice fs2</a></div>
 <div class="paragraph">
 <p>Chacune des lignes ci-dessous contient une entrée exprimée en absolu et en relatif par rapport à un répertoire courant donné.</p>
 </div>
@@ -357,6 +359,8 @@ et <code>~</code> le répertoire personnel de l&#8217;utilisateur (son <code>hom
 </div>
 </div>
 </div>
+</details>
+</div>
 <div class="sect2">
 <h3 id="_nom_générique"><a class="anchor" href="#_nom_générique"></a>3.3. Nom générique</h3>
 <div class="paragraph">
@@ -367,9 +371,11 @@ Par exemple, <code>/etc/a*</code> représente toutes les entrées du répertoire
 <p>De même, le caractère <code>?</code> représente n&#8217;importe quel caractère unique.
 Par exemple, <code>abcd?</code> représente toutes les entrées de 5 caractères commençant par <code>abcd</code>.</p>
 </div>
+<details class="exo">
+<summary class="title">Exercice 3<a href="" title="star">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="star">Exercice fs3</a></div>
 <div class="paragraph">
 <p>Quel nom générique correspond à toutes les entrées :</p>
 </div>
@@ -394,6 +400,8 @@ Par exemple, <code>abcd?</code> représente toutes les entrées de 5 caractères
 </div>
 </div>
 </div>
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -500,15 +508,19 @@ $ ll /tmp/passwd
 lrwxrwxrwx  1 jaclin jaclin 11 20 nov.  17:50 /tmp/passwd -&gt; /etc/passwd</code></pre>
 </div>
 </div>
+<details class="exo">
+<summary class="title">Exercice 4<a href="" title="arbo">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="arbo">Exercice fs4</a></div>
+<div class="paragraph parttitle">
+<p>Question 4.1</p>
+</div>
 <div class="olist arabic">
-<div class="title">Question fs4.1</div>
 <ol class="arabic">
 <li>
-<p>récupérer le fichier <a href="_attachments/archive.tgz">archive.tgz</a> et le désarchiver
-(par exemple avec la commande <code>tar xzf archive.tgz</code>)</p>
+<p>récupérer le fichier <a href="_attachments/archive.tgz">archive.tgz</a> et le désarchiver 
+(par exemple avec la commande <code>tar xzf archive.tgz</code>) </p>
 </li>
 <li>
 <p>parcourir l&#8217;arborescence obtenue, noter les types d&#8217;entrée qu&#8217;elle contient, et consulter le contenu de toutes ces entrées</p>
@@ -539,8 +551,10 @@ lrwxrwxrwx  1 jaclin jaclin 11 20 nov.  17:50 /tmp/passwd -&gt; /etc/passwd</cod
 </li>
 </ol>
 </div>
+<div class="paragraph parttitle">
+<p>Question 4.2</p>
+</div>
 <div class="paragraph">
-<div class="title">Question fs4.2</div>
 <p>A ce stade, l&#8217;arborescence précédente doit se présenter comme :</p>
 </div>
 <div class="listingblock">
@@ -590,14 +604,20 @@ lrwxrwxrwx  1 jaclin jaclin 11 20 nov.  17:50 /tmp/passwd -&gt; /etc/passwd</cod
 </div>
 </div>
 </div>
+</div>
+</details>
+<details class="exo">
+<summary class="title">Exercice 5<a href="" title="ls-a">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="ls-a">Exercice fs5</a></div>
 <div class="paragraph">
 <p>Tester l&#8217;option <code>-a</code> de la commande <code>ls</code> pour le répertoire <code>~</code>.</p>
 </div>
 </div>
 </div>
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -754,9 +774,11 @@ drwxrwxrwt 50 root root 1360  8 avril 09:40 /tmp</code></pre>
 lrwxrwxrwx 1 root root 7 17 juil.  2024 /bin -&gt; usr/bin</code></pre>
 </div>
 </div>
+<details class="exo">
+<summary class="title">Exercice 6<a href="" title="entrees">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="entrees">Exercice fs6</a></div>
 <div class="paragraph">
 <p>Quel est le type des entrées ci-dessous :</p>
 </div>
@@ -778,6 +800,8 @@ lrwxrwxrwx 1 root root 7 17 juil.  2024 /bin -&gt; usr/bin</code></pre>
 </div>
 </div>
 </div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_le_mode"><a class="anchor" href="#_le_mode"></a>6.2. Le mode</h3>
@@ -925,45 +949,28 @@ $ ll /tmp/mon_script
 -rwxr-xr-x 1 jaclin jaclin  0  13 févr. 17:57 /tmp/mon_script</code></pre>
 </div>
 </div>
+<details class="exo">
+<summary class="title">Exercice 7<a href="" title="attributs">&nbsp;</a></summary>
+<div class="content">
 <div class="sidebarblock exercice">
 <div class="content">
-<div class="title"><a href="" title="attributs">Exercice fs7</a></div>
 <div class="paragraph">
-<p>Comparer le mode des entrées suivantes :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>~/.bashrc</code></p>
-</li>
-<li>
-<p><code>/bin/cp</code></p>
-</li>
-<li>
-<p><code>/etc/sudoers</code></p>
-</li>
-<li>
-<p><code>/etc/shadow</code></p>
-</li>
-<li>
-<p><code>/etc</code></p>
-</li>
-<li>
-<p><code>~</code></p>
-</li>
-<li>
-<p><code>/usr/bin</code></p>
-</li>
-<li>
-<p><code>/tmp</code></p>
-</li>
-<li>
-<p><code>/etc/sssd</code></p>
-</li>
-</ul>
+<p>Comparer le mode des entrées suivantes :
+ 
+* <code>~/.bashrc</code>
+* <code>/bin/cp</code>
+* <code>/etc/sudoers</code>
+* <code>/etc/shadow</code>
+* <code>/etc</code>
+* <code>~</code>
+* <code>/usr/bin</code>
+* <code>/tmp</code>
+* <code>/etc/sssd</code></p>
 </div>
 </div>
 </div>
+</div>
+</details>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Résumé</dt>
