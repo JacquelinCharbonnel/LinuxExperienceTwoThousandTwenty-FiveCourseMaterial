@@ -124,8 +124,8 @@ jaclin</code></pre>
 <div class="listingblock">
 <div class="title">connexion à l&#8217;équipement distant</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh charb@ordi2
-charb@ordi2's password:
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh jc@ordi2
+jc@ordi2's password:
 Last login: Sat Mar 22 11:01:06 2025 from 192.168.50.80</code></pre>
 </div>
 </div>
@@ -135,7 +135,7 @@ Last login: Sat Mar 22 11:01:06 2025 from 192.168.50.80</code></pre>
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ hostname
 ordi2
 $ whoami
-charb</code></pre>
+jc</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -162,25 +162,25 @@ Exemples :</p>
 <div class="listingblock">
 <div class="title">copie d&#8217;un fichier sur l&#8217;équipement distant</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync ~/.bashrc charb@ordi2:/tmp</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync ~/.bashrc jc@ordi2:/tmp</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">copie d&#8217;une arborescence sur l&#8217;équipement distant</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync -r ~/Documents charb@ordi2:documents_originaux/</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync -r ~/Documents jc@ordi2:documents_originaux/</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">rapatriement d&#8217;un fichier sur l&#8217;équipement local</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync charb@ordi2:Documents/mon_fichier.txt .</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync jc@ordi2:Documents/mon_fichier.txt .</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">rapatriement d&#8217;une arborescence sur l&#8217;équipement local en conservant les attributs (dates, propriétaire, droits, etc.)</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync -a charb@ordi2:documents_originaux .</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ rsync -a jc@ordi2:documents_originaux .</code></pre>
 </div>
 </div>
 </div>
@@ -197,7 +197,7 @@ Cela évite donc d&#8217;avoir à entrer un mot de passe à la connexion.</p>
 <div class="paragraph">
 <p>Tout repose sur un jeu de 2 clés dépendantes l&#8217;une de l&#8217;autre
 (une clé est simplement un grand entier)
-dont les propriétés sont que :</p>
+dont les propriétés sont telles que :</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -220,7 +220,7 @@ et l&#8217;autre comme <em>privée</em>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>quiconque réussissant à déchiffrer un message avec la clé publique de l&#8217;auteur est sûr que l&#8217;auteur est bien le propriétaire du bi-clé
+<p>quiconque réussissant à déchiffrer un message chiffré avec une clé publique est sûr que c&#8217;est le propriétaire de cette clé publique qui en est l&#8217;auteur
 (puisque lui seul a pu le chiffrer avec sa clé privée),</p>
 </li>
 <li>
@@ -278,9 +278,9 @@ total 32
 <h4 id="_déposer_la_clé_publique_sur_un_équipement_distant"><a class="anchor" href="#_déposer_la_clé_publique_sur_un_équipement_distant"></a>3.2.2. Déposer la clé publique sur un équipement distant</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh charb@ordi2 ls -l ~/.ssh
-charb@ordi2's password:
-ls: impossible d'accéder à '/home/charb/.ssh': Aucun fichier ou dossier de ce nom</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh jc@ordi2 ls -l ~/.ssh
+jc@ordi2's password:
+ls: impossible d'accéder à '/home/jc/.ssh': Aucun fichier ou dossier de ce nom</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -288,12 +288,12 @@ ls: impossible d'accéder à '/home/charb/.ssh': Aucun fichier ou dossier de ce 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh-copy-id charb@ordi2
-charb@ordi2's password:
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh-copy-id jc@ordi2
+jc@ordi2's password:
 
 ordi2$ ls -l .ssh
 total 4
--rw-------. 1 charb charb 395 29 mai   10:55 authorized_keys</code></pre>
+-rw-------. 1 jc jc 395 29 mai   10:55 authorized_keys</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -303,7 +303,7 @@ sans fournir de mot de passe.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">ordi1$ ssh charb@ordi2 hostname
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">ordi1$ ssh jc@ordi2 hostname
 ordi2</code></pre>
 </div>
 </div>
