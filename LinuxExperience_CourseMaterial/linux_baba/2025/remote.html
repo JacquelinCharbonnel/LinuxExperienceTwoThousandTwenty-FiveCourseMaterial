@@ -189,19 +189,30 @@ Exemples :</p>
 <h2 id="_authentification_par_clés"><a class="anchor" href="#_authentification_par_clés"></a>3. Authentification par clés</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;authentification par clés évite d&#8217;avoir à entrer un mot de passe lors de la connexion à distance.</p>
+<p>L&#8217;authentification par clés peut se subsister à l&#8217;authentification par login/mot de passe d&#8217;une connexion ssh.
+Cela évite donc d&#8217;avoir à entrer un mot de passe à la connexion.</p>
 </div>
 <div class="sect2">
 <h3 id="_principe_théorique"><a class="anchor" href="#_principe_théorique"></a>3.1. Principe théorique</h3>
 <div class="paragraph">
-<p>Tout repose sur un jeu de 2 clés (bi-clé) dépendantes l&#8217;une de l&#8217;autre
-(une clé est simplement un grand entier).
-La propriété d&#8217;un tel bi-clé est que tout ce qui est chiffré avec l&#8217;une des clés est déchiffrable avec l&#8217;autre (et seulement avec elle).</p>
+<p>Tout repose sur un jeu de 2 clés dépendantes l&#8217;une de l&#8217;autre
+(une clé est simplement un grand entier)
+dont les propriétés sont que :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>tout ce qui est chiffré avec l&#8217;une des 2 clés est déchiffrable avec l&#8217;autre (et seulement avec elle),</p>
+</li>
+<li>
+<p>il est impossible de retrouver l&#8217;une des 2 clés à partir de l&#8217;autre.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>L&#8217;une des 2 clés est alors désignée par son propriétaire <em>publique</em>,
-ce qui induit aussitôt que l&#8217;autre doit être <em>secrète</em>
-(seul son propriétaire doit la connaitre).</p>
+<p>Le possesseur des 2 clés choisit l&#8217;une d&#8217;elle comme étant <em>publique</em> (donc diffusable à tout le monde),
+et l&#8217;autre comme <em>privée</em>
+(qui doit rester secrète, seul son propriétaire doit la connaitre).</p>
 </div>
 <div class="paragraph">
 <p>Avec cela :</p>
@@ -209,12 +220,12 @@ ce qui induit aussitôt que l&#8217;autre doit être <em>secrète</em>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>quiconque réussissant à déchiffrer un message avec la clé publique est sûr que l&#8217;auteur du  message est le propriétaire du bi-clé
-(puisque lui seul a pu le chiffrer avec la clé privée),</p>
+<p>quiconque réussissant à déchiffrer un message avec la clé publique de l&#8217;auteur est sûr que l&#8217;auteur est bien le propriétaire du bi-clé
+(puisque lui seul a pu le chiffrer avec sa clé privée),</p>
 </li>
 <li>
-<p>et inversement, quiconque voulant rédiger un message confidentiel pour le propriétaire du bi-clé le chiffre avec la clé publique
-(car seul le propriétaire pourra le déchiffrer avec la clé privée).</p>
+<p>et inversement, quiconque voulant rédiger un message confidentiel à destination d&#8217;un correspondant chiffre le message avec la clé publique du correspondant
+(car seul le correspondant pourra le déchiffrer avec sa clé privée).</p>
 </li>
 </ol>
 </div>
@@ -241,7 +252,7 @@ ce qui induit aussitôt que l&#8217;autre doit être <em>secrète</em>
 <h4 id="_générer_le_bi_clé_sur_le_poste_de_travail"><a class="anchor" href="#_générer_le_bi_clé_sur_le_poste_de_travail"></a>3.2.1. Générer le bi-clé sur le poste de travail</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ll ~/.ssh
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ll ~/.ssh
 ls: impossible d'accéder à '~/.ssh': Aucun fichier ou dossier de ce nom</code></pre>
 </div>
 </div>
@@ -250,13 +261,13 @@ ls: impossible d'accéder à '~/.ssh': Aucun fichier ou dossier de ce nom</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh-keygen
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh-keygen
 Generating public/private ed25519 key pair.
 Enter passphrase for "~/.ssh/id_rsa" (empty for no passphrase):
 Your identification has been saved in ~/.ssh/id_rsa
 Your public key has been saved in ~/.ssh/id_rsa.pub
 
-$ ll ~/.ssh
+ordi1 $ ll ~/.ssh
 total 32
 -rw-------. 1 jaclin jaclin 1675 31 oct.  21:46 id_rsa
 -rw-r--r--. 1 jaclin jaclin  395 31 oct.  21:46 id_rsa.pub</code></pre>
@@ -267,7 +278,7 @@ total 32
 <h4 id="_déposer_la_clé_publique_sur_un_équipement_distant"><a class="anchor" href="#_déposer_la_clé_publique_sur_un_équipement_distant"></a>3.2.2. Déposer la clé publique sur un équipement distant</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh charb@ordi2 'ls -l ~/.ssh'
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh charb@ordi2 ls -l ~/.ssh
 charb@ordi2's password:
 ls: impossible d'accéder à '/home/charb/.ssh': Aucun fichier ou dossier de ce nom</code></pre>
 </div>
@@ -277,10 +288,10 @@ ls: impossible d'accéder à '/home/charb/.ssh': Aucun fichier ou dossier de ce 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">$ ssh-copy-id charb@ordi2
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">ordi1$ ssh-copy-id charb@ordi2
 charb@ordi2's password:
 
-ls -l .ssh
+ordi2$ ls -l .ssh
 total 4
 -rw-------. 1 charb charb 395 29 mai   10:55 authorized_keys</code></pre>
 </div>
@@ -292,7 +303,7 @@ sans fournir de mot de passe.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">$ ssh charb@ordi2 hostname
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">ordi1$ ssh charb@ordi2 hostname
 ordi2</code></pre>
 </div>
 </div>
