@@ -32,3 +32,9 @@ footer.footer {
 	font-size:.83333rem;
 	line-height:1.6
 }
+
+.lastmodify {
+    text-align: right;
+    font-size: 50%;
+    font-style: italic;
+}
