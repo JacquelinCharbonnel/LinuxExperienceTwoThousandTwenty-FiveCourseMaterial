@@ -6,6 +6,9 @@
 .footer p.center {
 	text-align: center;
 }
+.footer p.center * {
+  color: white !important ;
+}
 .footer p.right {
 	text-align: right;
 }
