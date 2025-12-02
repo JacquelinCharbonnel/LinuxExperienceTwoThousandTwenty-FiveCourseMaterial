@@ -137,6 +137,40 @@
 </aside>
 <article class="doc">
 <h1 class="page">ARP</h1>
+<div class="sect1">
+<h2 id="_arp_sur_le_lan"><a class="anchor" href="#_arp_sur_le_lan"></a>1. ARP sur le LAN</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/ARPonLAN.webp" alt="ARPonLAN" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>un équipement souhaite envoyer des données à <code>192.168.1.20</code></p>
+</li>
+<li>
+<p>cet équipement broadcast une requête ARP : "<em>qui d&#8217;entre vous possède l&#8217;IP <code>192.168.1.20</em></code> ?</p>
+</li>
+<li>
+<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par l&#8217;émetteur ;
+comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre</p>
+</li>
+<li>
+<p>celle-ci insère alors son adresse MAC dans le paquet ARP, et le renvoie à l&#8217;émetteur</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arp_lors_dune_communication_internet"><a class="anchor" href="#_arp_lors_dune_communication_internet"></a>2. ARP lors d&#8217;une communication Internet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;opération précédente est alors réalisée sur tous les LAN traversés.
+Ci-dessous sont seulement expliquées les résolutions ARP au départ et à l&#8217;arrivée de l&#8217;information.</p>
+</div>
 <div class="paragraph">
 <p>Soit une machine source S connectée à son LAN.</p>
 </div>
@@ -145,8 +179,10 @@
 <img src="_images/interco1.webp" alt="interco1" width="400">
 </div>
 </div>
+<div class="sect2">
+<h3 id="_emission"><a class="anchor" href="#_emission"></a>2.1. Emission</h3>
 <div class="paragraph">
-<p>S expédie un paquet d&#8217;information à une machine distante D.</p>
+<p>S souhaite expédier un paquet d&#8217;information à une machine distante D.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -154,8 +190,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>La destination mentionnée dans ce paquet est donc l&#8217;adresse IP de D.
-Comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passerelle.</p>
+<p>S insère l&#8217;adresse IP de la destination comme destinataire du paquet, c&#8217;est-à-dire l&#8217;adresse IP de D.
+Puis, comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passerelle.
+La couche physique de S doit donc connaitre l&#8217;adresse MAC de la passerelle.
+Puisque S connait l&#8217;adresse IP de sa passerelle, il envoie, comme précédemmet, un broadcast ARP et récupère l&#8217;adresse souhaitée.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -163,7 +201,13 @@ Comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passere
 </div>
 </div>
 <div class="paragraph">
-<p>Le paquet progresse ensuite sur Internet et arrive sur la passerelle du LAN auquel est connectée D.</p>
+<p>Le paquet progresse ensuite sur Internet, ou ce processus est répliqué sur chaque LAN.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_réception"><a class="anchor" href="#_réception"></a>2.2. Réception</h3>
+<div class="paragraph">
+<p>Le paquet finit par arriver sur la passerelle du LAN auquel est connectée D.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -172,9 +216,10 @@ Comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passere
 </div>
 <div class="paragraph">
 <p>Celle-ci doit délivrer le paquet à D.
-Et pour cela, elle doit trouver l&#8217;adresse MAC de D
-(puisque c&#8217;est la couche physique qui, au final, transmet l&#8217;information).
-C&#8217;est ici qu&#8217;intervient le protocole <code>ARP</code> (<em>Address Resolution Protocol</em>):</p>
+Elle récupère l&#8217;adresse IP de D dans les metadata du paquet,
+et en déduit que D est sur son LAN.
+Pour lui transmettre le paquet, elle doit trouver l&#8217;adresse MAC de D.
+Comme précédemment :</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -185,7 +230,8 @@ C&#8217;est ici qu&#8217;intervient le protocole <code>ARP</code> (<em>Address R
 </div>
 </li>
 <li>
-<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par la passerelle ; comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre : elle insère alors son adresse MAC dans le paquet ARP, et le renvoie à la passerelle</p>
+<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par la passerelle ;
+comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre : elle insère alors son adresse MAC dans le paquet ARP, et le renvoie à la passerelle</p>
 <div class="paragraph">
 <p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
 </div>
@@ -198,13 +244,24 @@ C&#8217;est ici qu&#8217;intervient le protocole <code>ARP</code> (<em>Address R
 <div class="paragraph">
 <p>La passerelle en profite pour garder la correspondance (adresse IP de D &#8592;&#8594; adresse MAC de D) un certain temps (dans son cache ARP), au cas où d&#8217;autres paquets d&#8217;information seraient à acheminer vers D.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quelques_commandes"><a class="anchor" href="#_quelques_commandes"></a>3. Quelques commandes</h2>
+<div class="sectionbody">
 <div class="listingblock">
+<div class="title">voir les requêtes ARP en cours</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># voir les requêtes ARP en cours
-$ sudo tcpdump arp
-
-# voir le cache arp
-$ arp -a</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sudo tcpdump arp</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">voir le cache ARP de sa machine</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ arp -a</code></pre>
+</div>
+</div>
 </div>
 </div>
 </article>
