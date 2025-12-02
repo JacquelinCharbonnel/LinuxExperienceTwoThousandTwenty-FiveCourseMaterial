@@ -119,6 +119,14 @@
         </li>
       </ul>
     </li>
+    <li class="component">
+      <div class="title"><a href="../../reseau_baba/2025/index.html">Réseau</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../reseau_baba/2025/index.html">2025</a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </div>
     </div>
@@ -168,8 +176,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_installer_les_packages"><a class="anchor" href="#_installer_les_packages"></a>1. Installer les packages</h3>
+<div class="sect1">
+<h2 id="_installer_les_packages"><a class="anchor" href="#_installer_les_packages"></a>1. Installer les packages</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="title">sur Redhat</div>
 <div class="content">
@@ -184,8 +193,10 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_démarrer_le_service"><a class="anchor" href="#_démarrer_le_service"></a>2. Démarrer le service</h3>
+</div>
+<div class="sect1">
+<h2 id="_démarrer_le_service"><a class="anchor" href="#_démarrer_le_service"></a>2. Démarrer le service</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs"># systemctl start sshd</code></pre>
@@ -200,8 +211,10 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_adapter_le_firewall"><a class="anchor" href="#_adapter_le_firewall"></a>3. Adapter le firewall</h3>
+</div>
+<div class="sect1">
+<h2 id="_adapter_le_firewall"><a class="anchor" href="#_adapter_le_firewall"></a>3. Adapter le firewall</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Si un firewall tourne sur le serveur, alors il est nécessaire d&#8217;ajuster les règles de filtrage
 pour autoriser les clients à se connecter.</p>
@@ -222,6 +235,7 @@ Sur Redhat, on arrête le firewall par :</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs"># systemctl disable firewalld</code></pre>
+</div>
 </div>
 </div>
 </div>

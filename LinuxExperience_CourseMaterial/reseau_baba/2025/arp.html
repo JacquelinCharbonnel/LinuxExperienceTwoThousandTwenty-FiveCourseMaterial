@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ARP :: Linux expérience</title>
+    <link rel="canonical" href="https://jacquelincharbonnel.github.io/LinuxExperienceTwoThousandTwenty-FiveCourseMaterial/LinuxExperience_CourseMaterial/uatl_linux/2025/index.html/reseau_baba/2025/arp.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<!-- reference des feuilles de styles supplémentaires -->
+<link rel="stylesheet" href="../../_/css/layout.css">
+<link rel="stylesheet" href="../../_/css/content.css">
+
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jacquelincharbonnel.github.io/LinuxExperienceTwoThousandTwenty-FiveCourseMaterial/LinuxExperience_CourseMaterial/uatl_linux/2025/index.html">Linux expérience</a>
+  <!-- suppression du burger du bandeau
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+-->      
+    </div>
+<!-- suppression des boutons du bandeau
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+      </div>
+    </div>
+-->
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="reseau_baba" data-version="2025">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Réseau</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Aperçu</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Services d&#8217;infrastructure</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="arp.html">ARP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nat.html">NAT</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dns.html">DNS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhcp.html">DHCP</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Réseau</span>
+    <span class="version">2025</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../uatl_linux/2025/index.html">Index</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../uatl_linux/2025/index.html">2025</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../linux_context/2025/index.html">Linux contexte</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../linux_context/2025/index.html">2025</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../linux_baba/2025/index.html">Linux expliqué</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../linux_baba/2025/index.html">2025</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Réseau</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">2025</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../uatl_linux/2025/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Réseau</a></li>
+    <li>Services d&#8217;infrastructure</li>
+    <li><a href="arp.html">ARP</a></li>
+  </ul>
+</nav>
+<!-- supression de "edit this page"
+  <div class="edit-this-page"><a href="file:///home/jaclin/antora_components/reseaubaba/./modules/ROOT/pages/arp.adoc">Edit this Page</a></div>
+-->
+</div>
+  <!-- ajout de la date de modification -->
+     <div class="lastmodify"> modifié le <span id="lastmodify"/> </div>
+  <!-- fin ajout -->
+  <div class="content">
+<aside class="toc sidebar" data-title="Plan" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ARP</h1>
+<div class="paragraph">
+<p>Soit une machine source S connectée à son LAN.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interco1.webp" alt="interco1" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>S expédie un paquet d&#8217;information à une machine distante D.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interco4.webp" alt="interco4" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>La destination mentionnée dans ce paquet est donc l&#8217;adresse IP de D.
+Comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passerelle.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interco2.webp" alt="interco2" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Le paquet progresse ensuite sur Internet et arrive sur la passerelle du LAN auquel est connectée D.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interco3.webp" alt="interco3" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Celle-ci doit délivrer le paquet à D.
+Et pour cela, elle doit trouver l&#8217;adresse MAC de D
+(puisque c&#8217;est la couche physique qui, au final, transmet l&#8217;information).
+C&#8217;est ici qu&#8217;intervient le protocole <code>ARP</code> (<em>Address Resolution Protocol</em>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>la passerelle broadcaste sur son LAN un paquet ARP contenant l&#8217;adresse IP de D</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/arp1.png" alt="arp1"></span></p>
+</div>
+</li>
+<li>
+<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par la passerelle ; comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre : elle insère alors son adresse MAC dans le paquet ARP, et le renvoie à la passerelle</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
+</div>
+</li>
+<li>
+<p>la passerelle peut donc lui transmettre le paquet d&#8217;information</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La passerelle en profite pour garder la correspondance (adresse IP de D &#8592;&#8594; adresse MAC de D) un certain temps (dans son cache ARP), au cas où d&#8217;autres paquets d&#8217;information seraient à acheminer vers D.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># voir les requêtes ARP en cours
+$ sudo tcpdump arp
+
+# voir le cache arp
+$ arp -a</code></pre>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p class="center">
+  <span style="font-size: 0.9em;">
+    <a href="https://jacquelincharbonnel.github.io/">Jacquelin Charbonnel</a>
+    <!-- &nbsp; &mdash; &nbsp; -->
+    &nbsp;
+    &copy;Creative Commons BY-NC-SA 4.0
+  </span>
+  </p>
+</footer>
+
+<script>
+var myDate = new Date(document.lastModified);
+myNewDate = new Intl.DateTimeFormat(
+            undefined,
+            {year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"}
+        )
+        .format(myDate).replace(/\./g, '-');
+document.getElementById("lastmodify").innerHTML = myNewDate ;
+</script>
+
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
