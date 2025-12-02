@@ -141,10 +141,10 @@
 <h2 id="_pénurie_dadresses_ipv4"><a class="anchor" href="#_pénurie_dadresses_ipv4"></a>1. Pénurie d&#8217;adresses IPv4</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le nombre d&#8217;adresses IPv4 est au maximum 256<sup>4</sup>, soit 4,3 milliards d&#8217;adresses IPv4.
+<p>Le nombre d&#8217;adresses IPv4 est 256<sup>4</sup>, soit 4,3 milliards d&#8217;adresses IPv4.
 C&#8217;est très insuffisant pour équiper tous les appareils connectés.
 IPv6 a été créé pour faire face à la pénurie, mais sa mise en oeuvre est lente.
-Le NAT est un moyen pour IPv4 de faire face au problème, en attendant l&#8217;avènement d&#8217;IPv6 qui résoudra la pénurie de façon définitive..</p>
+Le NAT est un moyen pour IPv4 de faire face au problème, en attendant l&#8217;avènement d&#8217;IPv6 qui résoudra la pénurie.</p>
 </div>
 </div>
 </div>
@@ -194,13 +194,13 @@ Ces réseaux (appellés <em>réseaux privés</em>) sont :</p>
 <div class="ulist">
 <ul>
 <li>
-<p>le réseau de classe A <code>10.x.x.x/8</code>,</p>
+<p>le réseau <code>10.x.x.x/8</code> comportant 256<sup>3</sup> IP,</p>
 </li>
 <li>
-<p>les 16 réseaux de classe B <code>172.16.x.x/16</code> à <code>172.31.x.x/16</code>, et</p>
+<p>les 16 réseaux <code>172.16.x.x/16</code> à <code>172.31.x.x/16</code>, de 256² IP chacun, et</p>
 </li>
 <li>
-<p>les 256 réseaux de classe C <code>192.168.x.x/24</code>.</p>
+<p>les 256 réseaux <code>192.168.x.x/24</code>, de 256 IP chacun.</p>
 </li>
 </ul>
 </div>
@@ -210,7 +210,7 @@ Par conséquent, ces réseaux sont injoignables sur Internet,
 simplement parce qu&#8217;aucun routeur n&#8217;indique comment les atteindre.</p>
 </div>
 <div class="paragraph">
-<p>N&#8217;importe qui peut donc utiliser l&#8217;un de ces réseaux pour un usage personnel,
+<p>N&#8217;importe qui peut donc utiliser ces réseaux pour un usage personnel,
 sans risque de conflit.
 Dans les faits, ces réseaux privés
 sont utilisés pour des LAN privés, dont les équipements n&#8217;ont pas besoin d&#8217;être accessibles sur Internet.
@@ -239,14 +239,14 @@ est une <em>astuce</em> qui permet à une adresse IP privée, avec la complicit�
 <li>
 <p>L’équipement envoie un paquet sur son LAN.
 Comme tout paquet IP, celui-ci contient l&#8217;adresse IP de la source (nécessaire pour recevoir une réponse).
-Donc ici, l&#8217;adresse source est l&#8217;adresse IP privée de l&#8217;équipement.</p>
+Donc ici, l&#8217;adresse source est l&#8217;adresse IP privée de l&#8217;émetteur du paquet.</p>
 </li>
 <li>
 <p>Comme la destination n&#8217;est pas sur le LAN, le paquet est récupéré par la passerelle.</p>
 </li>
 <li>
-<p>La passerelle procède à un subterfuge :
-elle remplace, dans le paquet, l’adresse source par sa propre adresse
+<p>La passerelle procède alors à un subterfuge :
+elle remplace, dans le paquet, l’adresse source par sa propre adresse, son adresse publique.
 (elle mémorise aussi des informations qui seront utiles au retour du paquet).
 Le paquet a donc maintenant une addresse source publique,
 et c&#8217;est ainsi qu&#8217;il débarque sur Internet.</p>
@@ -337,9 +337,9 @@ Celle-ci doit arriver sur le port 8080 de 192.168.1.10.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>En ouvrant à tous un réseau initialement fermé, le port forwarding a un impact majeur sur la sécurité du réseau local.
+<p>En ouvrant à tout vent un réseau initialement fermé, le port forwarding a un impact majeur sur la sécurité du réseau local.
 L&#8217;équipement auparavant inaccessible, devient d&#8217;un coup visible par tout Internet.
-Désormais, il ne peut compter que sur ses propres moyens pour assurer sa sécurité.
+Désormais, il ne peut compter que sur ses propres défense pour assurer sa sécurité.
 Il doit donc appliquer les bonnes pratiques de sécurité :
 logiciels à jour, patches de sécurité appliqués, mots de passe solides, etc.
 Et une surveillance attentive de ce qui s&#8217;y passe doit être effectuée.
