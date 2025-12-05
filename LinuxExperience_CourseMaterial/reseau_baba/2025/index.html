@@ -552,7 +552,28 @@ et il faut faire sortir via l&#8217;interface <code>wlp0s20f3</code></td>
 <p><span class="image"><img src="_images/routage.png" alt="routage"></span></p>
 </div>
 <div class="sect3">
-<h4 id="_passerelle"><a class="anchor" href="#_passerelle"></a>3.2.1. Passerelle</h4>
+<h4 id="_adresse_ip"><a class="anchor" href="#_adresse_ip"></a>3.2.1. Adresse IP</h4>
+<div class="paragraph">
+<p>Une adresse IP comporte en réalité 2 informations juxtaposées : l&#8217;adresse du réseau et l&#8217;adresse de l&#8217;équipement sur le réseau.
+La frontière entre ces 2 adresses est spécifiée par le CIDR (<em>classless interdomain routing</em>), une information complémentaire.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/IPv4.png" alt="IPv4">
+</div>
+</div>
+<div class="paragraph">
+<p>Par exemple <code>172.16.254.1/16</code> signifie que l&#8217;adresse réseau est représentée par les 16 premiers bits de l&#8217;adresse IP
+(soit <code>172.16.x.x</code>),
+et que par conséquent l&#8217;adresse locale est représentée par les 16 derniers (soit <code>254.1</code>).</p>
+</div>
+<div class="paragraph">
+<p>De même, <code>192.168.1.1/24</code> signifie la frontière se situe au 24<sup>ème</sup> bit.
+Le réseau est donc le <code>192.168.1</code>, et l&#8217;équipement <code>1</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_passerelle"><a class="anchor" href="#_passerelle"></a>3.2.2. Passerelle</h4>
 <div class="paragraph">
 <p>Une passerelle (ou routeur, gateway) est un équipement connecté à plusieurs réseaux (au moins 2),
 et qui gère le passage des paquets d&#8217;un réseau à l&#8217;autre (à l&#8217;aide d&#8217;une table de routage).</p>
@@ -565,7 +586,7 @@ et qui gère le passage des paquets d&#8217;un réseau à l&#8217;autre (à l&#8
 </div>
 </div>
 <div class="sect3">
-<h4 id="_routage"><a class="anchor" href="#_routage"></a>3.2.2. Routage</h4>
+<h4 id="_routage"><a class="anchor" href="#_routage"></a>3.2.3. Routage</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Cas d&#8217;un LAN avec 1 seule passerelle</dt>
@@ -610,39 +631,9 @@ Sinon il est envoyé à la passerelle par défaut.</p>
 <div class="paragraph">
 <p>Un équipement doit donc savoir déterminer si son destinataire est ou non sur le même LAN que lui.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Une adresse IP comporte en réalité 2 informations juxtaposées : l&#8217;adresse du réseau et l&#8217;adresse de l&#8217;équipement sur le réseau.
-La frontière entre ces 2 adresses est spécifiée par le CIDR (<em>classless interdomain routing</em>), une information complémentaire.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/IPv4.png" alt="IPv4">
-</div>
-</div>
-<div class="paragraph">
-<p>Par exemple <code>172.16.254.1/16</code> signifie que l&#8217;adresse réseau est représentée par les 16 premiers bits de l&#8217;adresse IP
-(soit <code>172.16.x.x</code>),
-et que par conséquent l&#8217;adresse locale est représentée par les 16 derniers bits
-(soit <code>254.1</code>).</p>
-</div>
-<div class="paragraph">
-<p>De même, <code>192.168.1.1/24</code> signifie la frontière se situe au 24<sup>ème</sup> bit.
-Le réseau est donc le <code>192.168.1</code>, et l&#8217;équipement <code>1</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Visualiser les interconnexions traversées</dt>
+<dt class="hdlist1">Lister les passerelles traversées</dt>
 </dl>
 </div>
 <div class="openblock">
@@ -661,7 +652,7 @@ et transitant vers la destination correspondant à l&#8217;adresse IP <code>8.8.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_en_résumé"><a class="anchor" href="#_en_résumé"></a>3.2.3. En résumé</h4>
+<h4 id="_en_résumé"><a class="anchor" href="#_en_résumé"></a>3.2.4. En résumé</h4>
 <div class="paragraph">
 <p>La couche IP permet l&#8217;échange de paquets d&#8217;information entre 2 équipements connectés au même réseau IP.
 A ce niveau, on peut détecter (avec la commande <code>ping</code>) si un équipement est ou non joignable depuis l&#8217;équipement local.
@@ -715,7 +706,7 @@ Les 2 possibilités existent, et à chacune d&#8217;elles correspond un protocol
 En environnement perturbé, pour que la musique reste agréable à écouter,
 vaut-il mieux privilégier la bande passante (une haute définition, 20-20000Hz, donc un volume de donnée important)
 quitte à augmenter la latence (qui provoque de la <em>gigue</em>, ou <em>jitter</em>),
-ou bien vaut-il mieux privilégier la régularité du tempo, quitte à perdre en définition ?
+ou bien vaut-il mieux privilégier la régularité du tempo, quitte à perdre en qualité ?
 </td>
 </tr>
 </table>
@@ -806,7 +797,7 @@ L&#8217;application EtherApe cartographie les communications des équipements du
 en temps réel (<code>sudo etherape</code>).
 Utile pour avoir une idée du trafic local,
 et détecter des communications <em>suspectes</em>
-(en acceptant une certaine indiscrétion 🫣).
+(en fermant les yeux sur la caractère indiscret de la manip 🫣).
 </td>
 </tr>
 </table>
@@ -817,7 +808,7 @@ et détecter des communications <em>suspectes</em>
 <div class="paragraph">
 <p>Contrairement aux 2 protocoles historiques UDP et TCP,
 QUIC (Quick UDP Internet Connections) est un chalenger apparu en 2012.
-Il est développé initialement par Google, et est aujourd’hui standardisé par l’IETF.
+Développé initialement par Google, il  est aujourd’hui standardisé par l’IETF.
 Son but est d&#8217;améliorer (voire remplacer) TCP pour le web moderne, en étant plus rapide, plus sûr et mieux adapté aux réseaux mobiles.</p>
 </div>
 <div class="paragraph">
@@ -830,9 +821,9 @@ HTTP/3 s&#8217;appuie sur Quick.</p>
 <div class="sect2">
 <h3 id="_la_couche_application"><a class="anchor" href="#_la_couche_application"></a>3.4. La couche application</h3>
 <div class="paragraph">
-<p>Cette couche définit les services offerts par Internet :
+<p>Cette couche définit les services Internet :
 le web, la messagerie, le shell (SSH), les partages réseau (NFS, CIFS), la synchronisation des horloges (NTP), le streaming, etc.
-C&#8217;est à ce niveau que sont définis les protocoles de ces services, qui s&#8217;appuient soit sur TCP, soit sur UDP :</p>
+C&#8217;est à ce niveau que sont définis les protocoles de ces services, qui s&#8217;appuient soit sur TCP, soit sur UDP (ou QUIC):</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -917,7 +908,7 @@ C&#8217;est à ce niveau que sont définis les protocoles de ces services, qui s
 </tbody>
 </table>
 <div class="paragraph">
-<p>Les services d&#8217;Internet sont normalisés et énumérés dans le fichier <code>/etc/services</code>.</p>
+<p>Sous Unix, les services sont définis dans le fichier <code>/etc/services</code>.</p>
 </div>
 </div>
 </div>
