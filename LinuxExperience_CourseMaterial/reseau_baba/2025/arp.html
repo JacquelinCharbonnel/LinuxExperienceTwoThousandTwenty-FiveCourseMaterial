@@ -137,6 +137,14 @@
 </aside>
 <article class="doc">
 <h1 class="page">ARP</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>ARP est un protocole qui permet de trouver une adresse MAC coreespondant à une adresse IP.
+Il opère sur un LAN, et n&#8217;est pas relayé par les routeurs</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_arp_sur_le_lan"><a class="anchor" href="#_arp_sur_le_lan"></a>1. ARP sur le LAN</h2>
 <div class="sectionbody">
@@ -161,6 +169,12 @@ comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va 
 <p>celle-ci insère alors son adresse MAC dans le paquet ARP, et le renvoie à l&#8217;émetteur</p>
 </li>
 </ol>
+</div>
+<div class="listingblock">
+<div class="title">voir les requêtes ARP en temps réel</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sudo tcpdump arp</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -200,12 +214,15 @@ Puisque S connait l&#8217;adresse IP de sa passerelle, il envoie, comme précéd
 <img src="_images/interco2.webp" alt="interco2" width="400">
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_progression"><a class="anchor" href="#_progression"></a>2.2. Progression</h3>
 <div class="paragraph">
 <p>Le paquet progresse ensuite sur Internet, ou ce processus est répliqué sur chaque LAN.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_réception"><a class="anchor" href="#_réception"></a>2.2. Réception</h3>
+<h3 id="_réception"><a class="anchor" href="#_réception"></a>2.3. Réception</h3>
 <div class="paragraph">
 <p>Le paquet finit par arriver sur la passerelle du LAN auquel est connectée D.</p>
 </div>
@@ -241,20 +258,21 @@ comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va 
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>La passerelle en profite pour garder la correspondance (adresse IP de D &#8592;&#8594; adresse MAC de D) un certain temps (dans son cache ARP), au cas où d&#8217;autres paquets d&#8217;information seraient à acheminer vers D.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/interco4.webp" alt="interco4" width="400">
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_quelques_commandes"><a class="anchor" href="#_quelques_commandes"></a>3. Quelques commandes</h2>
+<h2 id="_cache_arp"><a class="anchor" href="#_cache_arp"></a>3. Cache ARP</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="title">voir les requêtes ARP en cours</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sudo tcpdump arp</code></pre>
-</div>
+<div class="paragraph">
+<p>Lorsqu&#8217;un équipement identifie l&#8217;adresse MAC correspondant à une adresse IP,
+il conserve cette information un certaint temps (dans une table en RAM, le cache ARP),
+au cas où d&#8217;autres paquets seraient à acheminer dans la foulée.</p>
 </div>
 <div class="listingblock">
 <div class="title">voir le cache ARP de sa machine</div>
