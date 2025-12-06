@@ -159,14 +159,14 @@ Ce protocole opère sur le LAN, il n&#8217;est pas relayé par les routeurs.</p>
 <p>un équipement souhaite envoyer des données à <code>192.168.1.20</code></p>
 </li>
 <li>
-<p>cet équipement broadcast une requête ARP : "<em>qui d&#8217;entre vous possède l&#8217;IP <code>192.168.1.20</em></code> ?</p>
+<p>cet équipement broadcast une requête ARP : "<em>qui d&#8217;entre vous possède l&#8217;IP <code>192.168.1.20</em></code> ?" (paquet ARP de type <em>who-has</em>)</p>
 </li>
 <li>
 <p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par l&#8217;émetteur ;
 comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre</p>
 </li>
 <li>
-<p>celle-ci insère alors son adresse MAC dans le paquet ARP, et le renvoie à l&#8217;émetteur</p>
+<p>celle-ci insère alors son adresse MAC dans le paquet ARP, et le renvoie à l&#8217;émetteur (paquet ARP de type <em>is-at</em>)</p>
 </li>
 </ol>
 </div>
@@ -182,8 +182,8 @@ comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va 
 <h2 id="_arp_lors_dune_communication_internet"><a class="anchor" href="#_arp_lors_dune_communication_internet"></a>2. ARP lors d&#8217;une communication Internet</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;opération précédente est alors réalisée sur tous les LAN traversés.
-Ci-dessous sont seulement expliquées les résolutions ARP au départ et à l&#8217;arrivée de l&#8217;information.</p>
+<p>L&#8217;opération précédente est réalisée sur tous les LAN traversés.
+Ci-dessous sont expliquées les résolutions ARP au départ et à l&#8217;arrivée de l&#8217;information.</p>
 </div>
 <div class="paragraph">
 <p>Soit une machine source S connectée à son LAN.</p>
@@ -193,8 +193,6 @@ Ci-dessous sont seulement expliquées les résolutions ARP au départ et à l&#8
 <img src="_images/interco1.webp" alt="interco1" width="400">
 </div>
 </div>
-<div class="sect2">
-<h3 id="_emission"><a class="anchor" href="#_emission"></a>2.1. Emission</h3>
 <div class="paragraph">
 <p>S souhaite expédier un paquet d&#8217;information à une machine distante D.</p>
 </div>
@@ -203,22 +201,47 @@ Ci-dessous sont seulement expliquées les résolutions ARP au départ et à l&#8
 <img src="_images/interco4.webp" alt="interco4" width="400">
 </div>
 </div>
+<div class="sect2">
+<h3 id="_emission"><a class="anchor" href="#_emission"></a>2.1. Emission</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>S insère l&#8217;adresse IP de la destination comme destinataire du paquet, c&#8217;est-à-dire l&#8217;adresse IP de D.</p>
+</li>
+<li>
+<p>Comme S et D ne sont pas sur le même LAN, S doit donc envoier le paquet à sa passerelle.
+Pour cela, la couche physique de S doit connaitre l&#8217;adresse MAC de la passerelle.</p>
+</li>
+<li>
+<p>Puisque S connait l&#8217;adresse IP de sa passerelle, S envoie un broadcast ARP de type who-has "<em>qui possède l&#8217;adresse IP de la passerelle</em> ?" :</p>
 <div class="paragraph">
-<p>S insère l&#8217;adresse IP de la destination comme destinataire du paquet, c&#8217;est-à-dire l&#8217;adresse IP de D.
-Puis, comme S et D ne sont pas sur le même LAN, S envoie donc le paquet à sa passerelle.
-La couche physique de S doit donc connaitre l&#8217;adresse MAC de la passerelle.
-Puisque S connait l&#8217;adresse IP de sa passerelle, il envoie, comme précédemmet, un broadcast ARP et récupère l&#8217;adresse souhaitée.</p>
+<p><span class="image"><img src="_images/arp1.png" alt="arp1"></span></p>
 </div>
+</li>
+<li>
+<p>Chaque équipement du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par S.
+Comme chaque équipement connait sa propre adresse IP, l&#8217;un d&#8217;eux va se reconnaitre.
+Celui-ci renvoie à S sont adresse MAC dans un paquet ARP de type is-at :</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
+</div>
+</li>
+<li>
+<p>S récupère en retour l&#8217;adresse MAC souhaitée.
+Sa couche physique peut donc envoyer les data à la passerelle.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/interco2.webp" alt="interco2" width="400">
 </div>
 </div>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_progression"><a class="anchor" href="#_progression"></a>2.2. Progression</h3>
 <div class="paragraph">
-<p>Le paquet progresse ensuite sur Internet, ou ce processus est répliqué sur chaque LAN.</p>
+<p>Le paquet progresse ensuite sur Internet, ou ce processus est répliqué sur chaque LAN traversé.</p>
 </div>
 </div>
 <div class="sect2">
@@ -241,20 +264,14 @@ Comme précédemment :</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>la passerelle broadcaste sur son LAN un paquet ARP contenant l&#8217;adresse IP de D</p>
-<div class="paragraph">
-<p><span class="image"><img src="_images/arp1.png" alt="arp1"></span></p>
-</div>
+<p>la passerelle broadcaste sur son LAN un paquet ARP who-has contenant l&#8217;adresse IP de D</p>
 </li>
 <li>
-<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par la passerelle ;
-comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre : elle insère alors son adresse MAC dans le paquet ARP, et le renvoie à la passerelle</p>
-<div class="paragraph">
-<p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
-</div>
+<p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par la passerelle.
+D se reconnait, et insère donc son adresse MAC dans un paquet ARP de type is-at, et le renvoie à la passerelle</p>
 </li>
 <li>
-<p>la passerelle peut donc lui transmettre le paquet d&#8217;information</p>
+<p>la passerelle peut donc lui transmettre les data</p>
 </li>
 </ol>
 </div>
@@ -271,7 +288,7 @@ comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va 
 <div class="sectionbody">
 <div class="paragraph">
 <p>Lorsqu&#8217;un équipement identifie l&#8217;adresse MAC correspondant à une adresse IP,
-il conserve cette information un certaint temps (dans une table en RAM, le cache ARP),
+il conserve cette information un certaint temps (dans une table en RAM, appelé le <em>cache ARP</em>),
 au cas où d&#8217;autres paquets seraient à acheminer dans la foulée.</p>
 </div>
 <div class="listingblock">

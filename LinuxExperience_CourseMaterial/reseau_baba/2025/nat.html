@@ -197,7 +197,7 @@ Ces réseaux (appellés <em>réseaux privés</em>) sont :</p>
 <p>le réseau <code>10.x.x.x/8</code> comportant 256<sup>3</sup> IP,</p>
 </li>
 <li>
-<p>les 16 réseaux <code>172.16.x.x/16</code> à <code>172.31.x.x/16</code>, de 256² IP chacun, et</p>
+<p>les 16 réseaux compris entre <code>172.16.x.x/16</code> et <code>172.31.x.x/16</code>, de 256² IP chacun, et</p>
 </li>
 <li>
 <p>les 256 réseaux <code>192.168.x.x/24</code>, de 256 IP chacun.</p>
@@ -206,7 +206,7 @@ Ces réseaux (appellés <em>réseaux privés</em>) sont :</p>
 </div>
 <div class="paragraph">
 <p>Tous les routeurs d&#8217;Internet écartent ces réseaux de leurs tables de routage.
-Par conséquent, ces réseaux sont injoignables sur Internet,
+Par conséquent, ces réseaux sont injoignables,
 simplement parce qu&#8217;aucun routeur n&#8217;indique comment les atteindre.</p>
 </div>
 <div class="paragraph">
@@ -246,7 +246,7 @@ Donc ici, l&#8217;adresse source est l&#8217;adresse IP privée de l&#8217;émet
 </li>
 <li>
 <p>La passerelle procède alors à un subterfuge :
-elle remplace, dans le paquet, l’adresse source par sa propre adresse, son adresse publique.
+elle remplace, dans le paquet, l’adresse source par sa propre adresse, son adresse publique
 (elle mémorise aussi des informations qui seront utiles au retour du paquet).
 Le paquet a donc maintenant une addresse source publique,
 et c&#8217;est ainsi qu&#8217;il débarque sur Internet.</p>
@@ -294,7 +294,8 @@ avec l&#8217;IP telle que le poste est vu sur Internet
 <h2 id="_redirection_de_ports"><a class="anchor" href="#_redirection_de_ports"></a>5. Redirection de ports</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La redirection de port (<em>port forwarding</em>) permet à des équipements situés sur Internet de pouvoir envoyer des requêtes à un équipement situé sur un réseau privé.
+<p>La redirection de port (<em>port forwarding</em>) permet à
+un équipement situé sur un réseau privé d&#8217;être contacté par des équipements situés sur Internet.
 Cela permet par exemple d&#8217;avoir un serveur web chez soi, ouvert sur Internet.
 Cela permet aussi de pouvoir, depuis Internet,
 d&#8217;accéder à la camera de surveillance de sa maison,

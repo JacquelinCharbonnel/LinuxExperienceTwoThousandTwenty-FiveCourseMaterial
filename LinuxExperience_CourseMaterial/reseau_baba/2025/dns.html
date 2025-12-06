@@ -155,12 +155,32 @@ Mais aujourd&#8217;hui, cela est remis en cause par <code>systemd</code>.</p>
 <div class="listingblock">
 <div class="title">exemple de résolution DNS avec la commande <code>host</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ host 8.8.8.8
-8.8.8.8.in-addr.arpa domain name pointer dns.google.com
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ host 8.8.8.8 <i class="conum" data-value="1"></i><b>(1)</b>
+8.8.8.8.in-addr.arpa domain name pointer dns.google.com <i class="conum" data-value="2"></i><b>(2)</b>
 
-$ host dns.google.com
-dns.google.com has address 8.8.8.8</code></pre>
+$ host dns.google.com <i class="conum" data-value="3"></i><b>(3)</b>
+dns.google.com has address 8.8.8.8 <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>quel est le nom de l&#8217;équipement d&#8217;IP <code>8.8.8.8</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>c&#8217;est <code>dns.google.com</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>quel est l&#8217;IP de l&#8217;équipement nommé <code>dns.google.com</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>c&#8217;est <code>8.8.8.8</code></td>
+</tr>
+</table>
 </div>
 </div>
 </div>

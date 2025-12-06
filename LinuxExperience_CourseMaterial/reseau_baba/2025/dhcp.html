@@ -146,7 +146,7 @@ Mais le nombre d&#8217;adresses IP utilisables sur un LAN est limité.
 Par exemple, si le LAN dispose de 256 adresses IP, cela signifie qu&#8217;il ne peut pas y avoir plus de 256 équipements actifs en même temps.</p>
 </div>
 <div class="paragraph">
-<p>Donc l&#8217;idée de mutualiser les adresses IP, de telle sorte qu&#8217;elles puissent passer d&#8217;un équipement à un autre, est intéressante.
+<p>D&#8217;où l&#8217;idée de mutualiser les adresses IP, de telle sorte qu&#8217;elles puissent passer d&#8217;un équipement à un autre.
 Ainsi, l&#8217;adresse IP d&#8217;un équipement éteint peut être réaffectée à un équipement actif.</p>
 </div>
 <div class="paragraph">
@@ -163,14 +163,12 @@ Ainsi, l&#8217;adresse IP d&#8217;un équipement éteint peut être réaffectée
 <div class="ulist">
 <ul>
 <li>
-<p>soit son adresse IP est fixée dans sa configuration,
-et dans ce cas, c&#8217;est elle qui est utilisée inconditionnellement
-(configuration en IP fixe),</p>
+<p>soit son adresse IP est fixée dans sa configuration (configuration en IP fixe),
+et dans ce cas, c&#8217;est elle qui est utilisée inconditionnellement,</p>
 </li>
 <li>
-<p>soit il est configuré pour faire appel au service DHCP
-afin d&#8217;obtenir son adresse IP
-(configuration en IP dynamique).</p>
+<p>soit il est configuré pour faire appel au service DHCP (configuration en IP dynamique)
+afin d&#8217;obtenir son adresse IP.</p>
 </li>
 </ul>
 </div>
@@ -214,7 +212,7 @@ Le service ne s&#8217;adresse qu&#8217;aux équipements situés sur ce LAN
 (les requêtes DHCP ne traversent pas les routeurs).</p>
 </div>
 <div class="paragraph">
-<p>Le serveur dispose d&#8217;une table de correspondance adresses <code>MAC</code> &#8592;&#8594; <code>IP souhaitée</code>.
+<p>Le serveur dispose d&#8217;une table de correspondance adresses <code>MAC</code> &#8592;&#8594; <code>IP_souhaitée</code>.
 Cette table contient les adresses MAC de tous les équipements que l&#8217;on veut associer à une IP fixe (c&#8217;est-à-dire qui ne change pas au cours du temps).
 Cela concerne principalement les équipements auxquels on veut se connecter (comme les serveurs).</p>
 </div>
@@ -249,8 +247,8 @@ Conclusion : l&#8217;équipement reçoit toujours la même IP (l&#8217;IP n&#821
 </ol>
 </div>
 <div class="paragraph">
-<p>Le serveur DHCP peut également fournir d&#8217;autres informations à l&#8217;équipement,
-comme par exemple l&#8217;adresse IP de la passerelle ou les adresses IP de serveurs DNS.</p>
+<p>Généralement, le serveur DHCP fournit également d&#8217;autres informations à l&#8217;équipement,
+comme par exemple l&#8217;adresse IP de la passerelle et l&#8217;adresse IP des serveurs DNS.</p>
 </div>
 </div>
 </div>
