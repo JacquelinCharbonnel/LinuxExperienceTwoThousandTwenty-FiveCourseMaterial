@@ -143,16 +143,18 @@
 <p>ARP est un protocole qui permet de trouver les correspondances adresse MAC / adresse IP des équipements situés sur la LAN.
 Ce protocole opère sur le LAN, il n&#8217;est pas relayé par les routeurs.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_arp_sur_le_lan"><a class="anchor" href="#_arp_sur_le_lan"></a>1. ARP sur le LAN</h2>
-<div class="sectionbody">
 <div class="imageblock">
 <div class="content">
 <img src="_images/ARPonLAN.webp" alt="ARPonLAN" width="400">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arp_sur_le_lan"><a class="anchor" href="#_arp_sur_le_lan"></a>1. ARP sur le LAN</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_principe"><a class="anchor" href="#_principe"></a>1.1. Principe</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -160,20 +162,30 @@ Ce protocole opère sur le LAN, il n&#8217;est pas relayé par les routeurs.</p>
 </li>
 <li>
 <p>cet équipement broadcast une requête ARP : "<em>qui d&#8217;entre vous possède l&#8217;IP <code>192.168.1.20</em></code> ?" (paquet ARP de type <em>who-has</em>)</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/arp1.png" alt="arp1"></span></p>
+</div>
 </li>
 <li>
 <p>chaque machine du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par l&#8217;émetteur ;
 comme chaque machine connait sa propre adresse IP, l&#8217;une d&#8217;elles va se reconnaitre</p>
 </li>
 <li>
-<p>celle-ci insère alors son adresse MAC dans le paquet ARP, et le renvoie à l&#8217;émetteur (paquet ARP de type <em>is-at</em>)</p>
+<p>celle-ci insère alors son adresse MAC dans le paquet ARP, et l&#8217;envoie à l&#8217;émetteur (paquet ARP de type <em>is-at</em>)</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
+</div>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_en_pratique"><a class="anchor" href="#_en_pratique"></a>1.2. En pratique</h3>
 <div class="listingblock">
 <div class="title">voir les requêtes ARP en temps réel</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ sudo tcpdump arp</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -214,17 +226,11 @@ Pour cela, la couche physique de S doit connaitre l&#8217;adresse MAC de la pass
 </li>
 <li>
 <p>Puisque S connait l&#8217;adresse IP de sa passerelle, S envoie un broadcast ARP de type who-has "<em>qui possède l&#8217;adresse IP de la passerelle</em> ?" :</p>
-<div class="paragraph">
-<p><span class="image"><img src="_images/arp1.png" alt="arp1"></span></p>
-</div>
 </li>
 <li>
 <p>Chaque équipement du LAN reçoit donc ce paquet ARP, et prend connaissance de l&#8217;adresse IP recherchée par S.
 Comme chaque équipement connait sa propre adresse IP, l&#8217;un d&#8217;eux va se reconnaitre.
 Celui-ci renvoie à S sont adresse MAC dans un paquet ARP de type is-at :</p>
-<div class="paragraph">
-<p><span class="image"><img src="_images/arp2.png" alt="arp2"></span></p>
-</div>
 </li>
 <li>
 <p>S récupère en retour l&#8217;adresse MAC souhaitée.
